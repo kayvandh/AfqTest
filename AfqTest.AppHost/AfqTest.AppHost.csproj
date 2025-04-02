@@ -12,8 +12,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AfqTest.ApiService\AfqTest.ApiService.csproj" />
-    <ProjectReference Include="..\AfqTest.Web\AfqTest.Web.csproj" />
+    <ProjectReference Include="..\Services\Hotel\Presentation\Hotel.ApiService\Hotel.ApiService.csproj" />
+    <ProjectReference Include="..\Services\Hotel\Presentation\Hotel.Web\Hotel.Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>

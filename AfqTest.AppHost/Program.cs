@@ -1,8 +1,8 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-var apiService = builder.AddProject<Projects.AfqTest_ApiService>("apiservice");
+var apiService = builder.AddProject<Projects.Hotel_ApiService>("apiservice");
 
-builder.AddProject<Projects.AfqTest_Web>("webfrontend")
+builder.AddProject<Projects.Hotel_Web>("webfrontend")
     .WithExternalHttpEndpoints()
     .WithReference(apiService)
     .WaitFor(apiService);
