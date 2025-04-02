@@ -6,23 +6,23 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfqTest.AppHost", "AfqTest.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfqTest.ServiceDefaults", "AfqTest.ServiceDefaults\AfqTest.ServiceDefaults.csproj", "{B5184572-0A95-0036-9FB0-E8A29D5A1F35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfqTest.ApiService", "AfqTest.ApiService\AfqTest.ApiService.csproj", "{2F5D349C-B853-6390-95E1-4122E87FF067}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfqTest.ApiService", "Services\AfqTest.ApiService\AfqTest.ApiService.csproj", "{2F5D349C-B853-6390-95E1-4122E87FF067}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfqTest.Web", "AfqTest.Web\AfqTest.Web.csproj", "{E95968E3-69BB-E4EE-059A-2CEDCC48AEB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfqTest.Web", "Services\AfqTest.Web\AfqTest.Web.csproj", "{E95968E3-69BB-E4EE-059A-2CEDCC48AEB2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{F01F732E-6976-4922-B295-9E6222703D5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "..\Framework\Framework.csproj", "{80F3880A-2E5F-435B-8B2F-384D8B67926C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Common\Framework\Framework.csproj", "{80F3880A-2E5F-435B-8B2F-384D8B67926C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resource", "..\Resource\Resource.csproj", "{53FCF001-11BE-4E6B-AB24-42A78A2223A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resource", "Common\Resource\Resource.csproj", "{53FCF001-11BE-4E6B-AB24-42A78A2223A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfqTest.Application", "..\AfqTest.Application\AfqTest.Application.csproj", "{EDF4D19B-F147-4EA8-A403-4086671F1A89}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfqTest.Application", "Services\AfqTest.Application\AfqTest.Application.csproj", "{EDF4D19B-F147-4EA8-A403-4086671F1A89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfqTest.Infrastructure", "..\AfqTest.Infrastructure\AfqTest.Infrastructure.csproj", "{14C528AD-E822-4251-BD43-5D9129D3A278}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfqTest.Infrastructure", "Services\AfqTest.Infrastructure\AfqTest.Infrastructure.csproj", "{14C528AD-E822-4251-BD43-5D9129D3A278}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfqTest.Domain", "..\AfqTest.Domain\AfqTest.Domain.csproj", "{E18972D0-BFE9-4146-845F-2E727522F71C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfqTest.Domain", "Services\AfqTest.Domain\AfqTest.Domain.csproj", "{E18972D0-BFE9-4146-845F-2E727522F71C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
