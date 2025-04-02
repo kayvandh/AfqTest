@@ -1,37 +1,64 @@
-var builder = WebApplication.CreateBuilder(args);
+using AfqTest.Application;
+using AfqTest.Infrastructure;
+using Framework.ApiResponse;
+using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.OpenApi.Models;
+using System.IO.Compression;
 
-// Add service defaults & Aspire client integrations.
-builder.AddServiceDefaults();
-
-// Add services to the container.
-builder.Services.AddProblemDetails();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-app.UseExceptionHandler();
-
-string[] summaries = ["Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"];
-
-app.MapGet("/weatherforecast", () =>
+namespace AfqTest.ApiService
 {
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
 
-app.MapDefaultEndpoints();
+            builder.AddServiceDefaults();
+            builder.Services.AddProblemDetails();
 
-app.Run();
+            builder.Services.AddControllers()
+               .ConfigureApiBehaviorOptions(options =>
+               {
+                   options.InvalidModelStateResponseFactory = context => context.ToApiResponse();
+               });
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+            builder.Services.AddHttpContextAccessor();
+
+            builder.Services.AddApplication(builder.Configuration)
+                .AddInfrastructure(builder.Configuration);
+
+            builder.Services.AddResponseCompression(options =>
+            {
+                options.EnableForHttps = true;
+                options.Providers.Add<GzipCompressionProvider>();
+            });
+
+            builder.Services.Configure<GzipCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Optimal;
+            });
+
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.EnableAnnotations();
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Afq.API", Version = "v1" });
+            });
+            var app = builder.Build();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Afq.API v1"));
+            app.UseCors(options =>
+                options.AllowAnyHeader()
+                       .AllowAnyOrigin()
+                       .AllowAnyMethod());
+
+            app.UseRouting();
+            app.MapControllers();
+            app.UseExceptionHandler();
+
+            app.Run();
+        }
+    }
 }
+
+
