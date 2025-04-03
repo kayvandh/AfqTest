@@ -1,14 +1,24 @@
 ﻿using Hotel.Application.Common.Services;
 using Hotel.Application.Common.Services.Models;
+using Microsoft.Extensions.Caching.Memory;
 
 
 namespace Hotel.Infrastructure.Services.Moghim24
 {
-    public class Moghim24HotelService : IHotelService
+    public class Moghim24HotelService(IMemoryCache memoryCache) : IHotelService
     {
-        public Task<HotelSearchResponse> HotelSearch(HotelSearchRequest request)
+        int providerId = 1;
+        public async Task HotelSearch(HotelSearchRequest request, Guid searchId, string serviceKey)
         {
-            throw new NotImplementedException();
+            await Task.Run(() =>
+            {
+                var result = new HotelSearchResponse()
+                {
+                    SearchId = searchId,
+                    HotelResults = new List<HotelResult>() { new HotelResult() { ProviderId = providerId, Title = " Test 1" } }
+                };
+                memoryCache.Set($"Hotel_{serviceKey}_{searchId}", result, TimeSpan.FromMinutes(15));
+            });
         }
 
         public Task<HotelInfoResponse> HotelInfo(HotelInfoRequest request)

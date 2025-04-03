@@ -1,10 +1,15 @@
 using Framework.ApiResponse;
 using Framework.ServiceDefault;
+using Framework.Middleware;
 using Hotel.Application;
 using Hotel.Infrastructure;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.OpenApi.Models;
 using System.IO.Compression;
+using Hotel.Application.Common.Services;
+using Hotel.Infrastructure.Services.Moghim24;
+using Hotel.Infrastructure.Services.Eghamat24;
+using Hotel.Infrastructure.Services.Eghamat24.Models;
 
 namespace Hotel.ApiService
 {
@@ -14,8 +19,7 @@ namespace Hotel.ApiService
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.AddServiceDefaults();
-            builder.Services.AddProblemDetails();
+            builder.AddServiceDefaults();            
 
             builder.Services.AddControllers()
                .ConfigureApiBehaviorOptions(options =>
@@ -24,6 +28,7 @@ namespace Hotel.ApiService
                });
 
             builder.Services.AddHttpContextAccessor();
+            builder.Services.AddMemoryCache();
 
             builder.Services.AddApplication(builder.Configuration)
                 .AddInfrastructure(builder.Configuration);
@@ -54,9 +59,9 @@ namespace Hotel.ApiService
                        .AllowAnyMethod());
 
             app.UseRouting();
-            app.MapControllers();
-            app.UseExceptionHandler();
+            app.MapControllers();            
 
+            app.UseExceptionHandling();
             app.Run();
         }
     }

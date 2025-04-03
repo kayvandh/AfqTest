@@ -9,7 +9,7 @@ namespace Hotel.Application.Common.Services
 {
     public interface IHotelService
     {
-        Task<HotelSearchResponse> HotelSearch(HotelSearchRequest request);
+        Task HotelSearch(HotelSearchRequest request,Guid searchId,string serviceKey);
 
         Task<HotelInfoResponse> HotelInfo(HotelInfoRequest request);
 

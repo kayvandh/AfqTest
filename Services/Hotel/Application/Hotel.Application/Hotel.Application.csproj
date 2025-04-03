@@ -20,4 +20,8 @@
     <ProjectReference Include="..\..\Domain\Hotel.Domain\Hotel.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CommandHandler\" />
+  </ItemGroup>
+
 </Project>

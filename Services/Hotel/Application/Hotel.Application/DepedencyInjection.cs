@@ -12,7 +12,7 @@ namespace Hotel.Application
         public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-            services.AddAutoMapper(typeof(Application.Mapping.ApplicationProfile).Assembly);
+            services.AddAutoMapper(cfg => cfg.DisableConstructorMapping(), typeof(Mapping.ApplicationProfile).Assembly);
 
             services.Configure<AppSettings.Main>(
                 configuration.GetSection(AppSettings.Main.Section));
