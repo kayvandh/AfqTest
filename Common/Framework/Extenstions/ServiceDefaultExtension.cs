@@ -9,7 +9,7 @@ using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
-namespace Framework.ServiceDefault
+namespace Framework.Extenstions
 {
     public static class ServiceDefaultExtension
     {

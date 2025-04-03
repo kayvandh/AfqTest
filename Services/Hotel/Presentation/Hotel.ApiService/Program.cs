@@ -1,15 +1,11 @@
 using Framework.ApiResponse;
-using Framework.ServiceDefault;
 using Framework.Middleware;
 using Hotel.Application;
 using Hotel.Infrastructure;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.OpenApi.Models;
 using System.IO.Compression;
-using Hotel.Application.Common.Services;
-using Hotel.Infrastructure.Services.Moghim24;
-using Hotel.Infrastructure.Services.Eghamat24;
-using Hotel.Infrastructure.Services.Eghamat24.Models;
+using Framework.Extenstions;
 
 namespace Hotel.ApiService
 {

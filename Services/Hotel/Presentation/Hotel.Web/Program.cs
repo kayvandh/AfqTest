@@ -1,6 +1,6 @@
 using Hotel.Web;
 using Hotel.Web.Components;
-using Framework.ServiceDefault;
+using Framework.Extenstions;
 
 var builder = WebApplication.CreateBuilder(args);
 
