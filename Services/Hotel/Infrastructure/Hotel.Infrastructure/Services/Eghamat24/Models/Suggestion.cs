@@ -20,7 +20,7 @@ namespace Hotel.Infrastructure.Services.Eghamat24.Models
         public string PropertyNameAr { get; set; }
 
         [JsonPropertyName("property_name_en")]
-        public object PropertyNameEn { get; set; }
+        public string PropertyNameEn { get; set; }
 
         [JsonPropertyName("rooms")]
         public List<Room> Rooms { get; set; }

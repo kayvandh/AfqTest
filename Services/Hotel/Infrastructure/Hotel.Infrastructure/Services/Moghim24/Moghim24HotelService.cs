@@ -77,7 +77,6 @@ namespace Hotel.Infrastructure.Services.Moghim24
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }

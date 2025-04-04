@@ -25,7 +25,7 @@ namespace Hotel.Infrastructure.Services.Eghamat24.Models
         public int AdultCount { get; set; }
 
         [JsonPropertyName("children")]
-        public int? Children { get; set; }
+        public List<int>? Children { get; set; }
 
         [JsonPropertyName("property_id")]
         public int? PropertyId { get; set; }

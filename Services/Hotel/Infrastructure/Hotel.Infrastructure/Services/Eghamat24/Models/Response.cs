@@ -15,8 +15,8 @@ namespace Hotel.Infrastructure.Services.Eghamat24.Models
         [JsonPropertyName("message")]
         public string Message { get; set; }
 
-        [JsonPropertyName("error")]
-        public Error Error{ get; set; }
+        [JsonPropertyName("errors")]
+        public List<Error> Error{ get; set; }
 
         [JsonPropertyName("value")]
         public T Value { get; set; }

@@ -1,5 +1,6 @@
 ﻿using Framework.ApiResponse;
 using Framework.Extenstions;
+using Framework.HttpClientHelper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
@@ -19,6 +20,18 @@ namespace Framework.Middleware
             try
             {
                 await _next(context);
+            }
+            catch(ApiException ex)
+            {
+                context.Response.StatusCode = 500;
+                var response = new ApiResponse.ApiResponse()
+                {
+                    HasError = true,
+                    HttpStatusCode = System.Net.HttpStatusCode.InternalServerError,
+                    Message = ex.Message,
+                    Messages = { ex.ResponseContent }
+                };
+                await context.Response.WriteAsJsonAsync(response);
             }
             catch (Exception ex)
             {

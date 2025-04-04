@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
+
 
 namespace Framework.HttpClientHelper
 {
@@ -26,7 +24,7 @@ namespace Framework.HttpClientHelper
                     requestUri = QueryHelpers.AddQueryString(requestUri, parameters);
                 }
 
-                using var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
+                using var request = new HttpRequestMessage(HttpMethod.Get, requestUri);                
 
                 if (headers != null)
                 {
@@ -125,5 +123,6 @@ namespace Framework.HttpClientHelper
         {
             return PostAsync<TRequest, TResponse, TResponse>(request,client,requestUri,headers,options);
         }
+
     }
 }

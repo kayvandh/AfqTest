@@ -9,11 +9,12 @@ namespace Hotel.Infrastructure.Services.Eghamat24.Models
 {
     public class RatePlan
     {
+
         [JsonPropertyName("id")]
         public int Id { get; set; }
 
         [JsonPropertyName("country_id")]
-        public int CountryId { get; set; }
+        public int? CountryId { get; set; }
 
         [JsonPropertyName("nationality")]
         public string Nationality { get; set; }
@@ -22,10 +23,10 @@ namespace Hotel.Infrastructure.Services.Eghamat24.Models
         public string Name { get; set; }
 
         [JsonPropertyName("name_ar")]
-        public object NameAr { get; set; }
+        public string NameAr { get; set; }
 
         [JsonPropertyName("name_en")]
-        public object NameEn { get; set; }
+        public string NameEn { get; set; }
 
         [JsonPropertyName("meal_type_included")]
         public string MealTypeIncluded { get; set; }
@@ -40,16 +41,16 @@ namespace Hotel.Infrastructure.Services.Eghamat24.Models
         public int BreakfastRate { get; set; }
 
         [JsonPropertyName("half_board_rate")]
-        public int HalfBoardRate { get; set; }
+        public int? HalfBoardRate { get; set; }
 
         [JsonPropertyName("full_board_rate")]
-        public int FullBoardRate { get; set; }
+        public int? FullBoardRate { get; set; }
 
         [JsonPropertyName("cancelable")]
-        public bool Cancelable { get; set; }
+        public int Cancelable { get; set; }
 
         [JsonPropertyName("sleeps")]
-        public int Sleeps { get; set; }
+        public int? Sleeps { get; set; }
 
         [JsonPropertyName("facilities")]
         public List<FacilityDetails> Facilities { get; set; }
@@ -57,25 +58,8 @@ namespace Hotel.Infrastructure.Services.Eghamat24.Models
         [JsonPropertyName("prices")]
         public List<Price> Prices { get; set; }
 
-        [JsonPropertyName("min_stay")]
-        public int MinStay { get; set; }
 
-        [JsonPropertyName("max_stay")]
-        public int MaxStay { get; set; }
 
-        [JsonPropertyName("disabled")]
-        public bool Disabled { get; set; }
 
-        [JsonPropertyName("property_id")]
-        public int PropertyId { get; set; }
-
-        [JsonPropertyName("agency_id")]
-        public int AgencyId { get; set; }
-
-        [JsonPropertyName("duration_hours")]
-        public int DurationHours { get; set; }
-
-        [JsonPropertyName("checkout")]
-        public int Checkout { get; set; }
     }
 }

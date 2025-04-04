@@ -46,10 +46,10 @@ namespace Hotel.Infrastructure.Services.Eghamat24.Models
         public string ReservationState { get; set; }
 
         [JsonPropertyName("min_stay")]
-        public int MinStay { get; set; }
+        public int? MinStay { get; set; }
 
         [JsonPropertyName("max_stay")]
-        public int MaxStay { get; set; }
+        public int? MaxStay { get; set; }
 
         [JsonPropertyName("close_to_arrival")]
         public bool CloseToArrival { get; set; }

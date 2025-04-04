@@ -63,14 +63,14 @@ namespace Hotel.Infrastructure.Persistance.Repositories
             return await Task.Run(() => result );            
         }
 
-        public async Task<City> GetById(int id)
+        public async Task<City?> GetById(int id, bool includeDetail = true)
         {
-            return (await GetAllAsync()).FirstOrDefault(p=> p.Id==id);
+            return (await GetAllAsync(includeDetail)).FirstOrDefault(p=> p.Id==id);
         }
 
-        public async Task<List<City>> GetByTitle(string title)
+        public async Task<List<City>> GetByTitle(string title, bool includeDetail = true)
         {
-            return (await GetAllAsync()).Where(p => p.TitleEn.Contains(title) || p.TitleFa.Contains(title)).ToList(); ;
+            return (await GetAllAsync(includeDetail)).Where(p => p.TitleEn.Contains(title) || p.TitleFa.Contains(title)).ToList(); ;
         }
     }
 }

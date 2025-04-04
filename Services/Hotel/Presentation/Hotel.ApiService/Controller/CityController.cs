@@ -13,12 +13,32 @@ namespace Hotel.ApiService.Controller
     public class CityController(IMediator mediator) : ControllerBase
     {
         [HttpGet]
-        [Route("GetCities")]
+        [Route("GetAllCities")]
         [ProducesResponseType(typeof(ApiResponse<List<City>>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ApiResponse<List<City>>), (int)HttpStatusCode.BadRequest)]
-        public async Task<ApiResponse<List<City>>> GetCities()
+        public async Task<ApiResponse<List<City>>> GetAllCities()
         {
             var request = new GetAllCityQuery();
+            var result = await mediator.Send(request);
+            return result.ToApiResponse();
+        }
+
+        [HttpGet]
+        [Route("GetCitiesByTitle")]
+        [ProducesResponseType(typeof(ApiResponse<List<City>>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ApiResponse<List<City>>), (int)HttpStatusCode.BadRequest)]
+        public async Task<ApiResponse<List<City>>> GetCitiesByTitle([FromQuery]GetCitiesByTitleQuery request)
+        {            
+            var result = await mediator.Send(request);
+            return result.ToApiResponse();
+        }
+
+        [HttpGet]
+        [Route("GetCityById")]
+        [ProducesResponseType(typeof(ApiResponse<City>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ApiResponse<City>), (int)HttpStatusCode.BadRequest)]
+        public async Task<ApiResponse<City>> GetCityById([FromQuery] GetCityByIdQuery request)
+        {            
             var result = await mediator.Send(request);
             return result.ToApiResponse();
         }
