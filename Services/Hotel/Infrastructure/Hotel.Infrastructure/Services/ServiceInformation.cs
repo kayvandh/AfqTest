@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Hotel.Application.Common.Services;
+using Hotel.Infrastructure.Services.Eghamat24;
+using Hotel.Infrastructure.Services.Moghim24;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,25 +11,28 @@ namespace Hotel.Infrastructure.Services
 {
     public static class ServiceInformation
     {
-        public const string Moghim24Service = "MOGHIM24";
-        public const string Eghamat24Service = "EGHMAT24";
-
-        public static List<HttpClientData> ServiceInfos = new List<HttpClientData>()
+        public static List<ServiceData> ServiceInfos = new List<ServiceData>()
         {
-            new HttpClientData(Moghim24Service, "https://hotel.moghim24.services"),
-            new HttpClientData(Eghamat24Service, "https://api.grschannel.com")
-        };           
+            new ServiceData(1,"MOGHIM24", "https://hotel.moghim24.services",typeof(Moghim24HotelService)),
+            new ServiceData(2,"EGHMAT24", "https://api.grschannel.com",typeof(Eghamat24HotelService))
+        };
+
+        public static ServiceData? GetServiceInfo(int providerId) => ServiceInfos.FirstOrDefault(p => p.ProviderId == providerId);
     }
 
-    public class HttpClientData
+    public class ServiceData
     {
-        public HttpClientData(string title, string baseAddress)
+        public ServiceData(int providerId, string serviceKeytle, string baseAddress, Type implementedService)
         {
-            Title = title;
+            ServiceKey = serviceKeytle;
             BaseAddress = baseAddress;
+            ProviderId = providerId;
+            ImplementedService = implementedService;
         }
 
-        public string Title { get; set; }
+        public int ProviderId { get; set; }
+        public string ServiceKey { get; set; }
         public string BaseAddress { get; set; }
+        public Type ImplementedService { get; set; }
     }
 }

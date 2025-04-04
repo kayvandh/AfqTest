@@ -1,5 +1,5 @@
 ﻿using Framework.ApiResponse;
-using Hotel.Application.Common.Services.Models;
+using Hotel.Application.Common.Models;
 using Hotel.Application.Query;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +15,7 @@ namespace Hotel.ApiService.Controller
         [Route("SearchHotel")]
         [ProducesResponseType(typeof(ApiResponse<HotelSearchResponse>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ApiResponse<HotelSearchResponse>), (int)HttpStatusCode.BadRequest)]
-        public async Task<ApiResponse<HotelSearchResponse>> SearchHotel([FromBody]HotelSearchQuery request)
+        public async Task<ApiResponse<HotelSearchResponse>> SearchHotel([FromBody]SearchHotelQuery request)
         {
             var result = await mediator.Send(request);
             return result.ToApiResponse();

@@ -1,6 +1,8 @@
 ﻿using Framework.HttpClientHelper;
 using Hotel.Application.Common;
+using Hotel.Application.Common.Repositories;
 using Hotel.Application.Common.Services;
+using Hotel.Infrastructure.Persistance.Repositories;
 using Hotel.Infrastructure.Services;
 using Hotel.Infrastructure.Services.Eghamat24;
 using Hotel.Infrastructure.Services.Eghamat24.Models;
@@ -17,9 +19,10 @@ namespace Hotel.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IHttpClientHelper,HttpClientHelper>();
+
             foreach (var serviceInfo in ServiceInformation.ServiceInfos)
             {
-                services.AddHttpClient(serviceInfo.Title, client =>
+                services.AddHttpClient(serviceInfo.ServiceKey, client =>
                 {
                     client.BaseAddress = new Uri(serviceInfo.BaseAddress);
                     client.Timeout = TimeSpan.FromSeconds(50);
@@ -29,24 +32,35 @@ namespace Hotel.Infrastructure
                 });
             }
 
-            var tracker = new KeyedServiceTracker();
-            services.AddSingleton(tracker);
 
-            void RegisterKeyedService<TService, TImplementation>(string key)
-                where TService : class
-                where TImplementation : class, TService
+            // this approach is more felexible
+
+            var serviceTracker = new KeyedServiceTracker();
+            services.AddSingleton(serviceTracker);
+
+            foreach (var serviceInfo in ServiceInformation.ServiceInfos)
             {
-                services.AddKeyedTransient<TService, TImplementation>(key);                
-                tracker.AddKey(key);
+                services.AddKeyedTransient(typeof(IHotelService), serviceInfo.ServiceKey, serviceInfo.ImplementedService);
+                serviceTracker.AddServices(serviceInfo.ProviderId, serviceInfo.ServiceKey);
             }
 
+            // this approach is faster and safer
 
-            //Add all implemented service here
+            //void RegisterKeyedService<TService, TImplementation>(int providerId, string serviceKey)
+            //    where TService : class
+            //    where TImplementation : class, TService
+            //{
+            //    services.AddKeyedTransient<TService, TImplementation>(serviceKey);
+            //    serviceTracker.AddServices(providerId, serviceKey);
+            //}
 
-            RegisterKeyedService<IHotelService, Moghim24HotelService>(Infrastructure.Services.ServiceInformation.Moghim24Service);
-            RegisterKeyedService<IHotelService, Eghamat24HotelService>(Infrastructure.Services.ServiceInformation.Eghamat24Service);
+            ////Add all implemented service here
+
+            //RegisterKeyedService<IHotelService, Moghim24HotelService>(1, Infrastructure.Services.ServiceInformation.Moghim24Service);
+            //RegisterKeyedService<IHotelService, Eghamat24HotelService>(2, Infrastructure.Services.ServiceInformation.Eghamat24Service);
 
 
+            services.AddScoped<ICityRepository, CityRepository>();
             return services;
         }
 

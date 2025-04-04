@@ -1,20 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Hotel.Application.Common
 {
     public class KeyedServiceTracker
     {
-        private readonly List<string> _keys = new();
+        private readonly List<ServiceTracker> _serviceTracker = new List<ServiceTracker> ();    
 
-        public void AddKey(string key)
+        public void AddServices(int providerId, string serviceKey)
         {
-            if (!_keys.Contains(key))
-                _keys.Add(key);
+            if (!_serviceTracker.Any(p => p.ProviderId == providerId))
+                _serviceTracker.Add(new ServiceTracker(providerId, serviceKey));
         }
-        public IReadOnlyList<string> GetKeys() => _keys.AsReadOnly();
+        public IReadOnlyList<ServiceTracker> GetServiceTrackers() => _serviceTracker.AsReadOnly();
+        public ServiceTracker? GetService(int providerId) => _serviceTracker.FirstOrDefault(p => p.ProviderId == providerId);
+    }
+    public class ServiceTracker
+    {
+        public ServiceTracker(int providerId, string serviceKey)
+        {
+            ProviderId = providerId;
+            ServiceKey = serviceKey;
+        }
+
+        public int ProviderId { get; set; }
+        public string ServiceKey { get; set; }
     }
 }

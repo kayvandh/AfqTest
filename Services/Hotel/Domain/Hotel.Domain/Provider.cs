@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Hotel.Domain
 {
-    internal class Provider
+    public class Provider
     {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string DisplayName { get; set; }
+        public string BaseAddress { get; set; }
+        public string Properties { get; set; }
+
+        public virtual IEnumerable<ProviderCity> ProviderCities { get; set; }
     }
 }

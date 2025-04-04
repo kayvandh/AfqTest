@@ -13,27 +13,27 @@ namespace Hotel.Infrastructure.Services.Moghim24.Models
         public string Date { get; set; }
 
         [JsonPropertyName("roomPrice")]
-        public int RoomPrice { get; set; }
+        public Int64 RoomPrice { get; set; }
 
         [JsonPropertyName("roomPricePercentCommission")]
-        public int RoomPricePercentCommission { get; set; }
+        public Int64 RoomPricePercentCommission { get; set; }
 
         [JsonPropertyName("netRoomPrice")]
-        public int NetRoomPrice { get; set; }
+        public Int64 NetRoomPrice { get; set; }
 
         [JsonPropertyName("servicePrice")]
-        public int ServicePrice { get; set; }
+        public Int64 ServicePrice { get; set; }
 
         [JsonPropertyName("servicePricePercentCommission")]
-        public int ServicePricePercentCommission { get; set; }
+        public Int64 ServicePricePercentCommission { get; set; }
 
         [JsonPropertyName("netServicePrice")]
-        public int NetServicePrice { get; set; }
+        public Int64 NetServicePrice { get; set; }
 
         [JsonPropertyName("lunchPrice")]
-        public int LunchPrice { get; set; }
+        public Int64 LunchPrice { get; set; }
 
         [JsonPropertyName("dinnerPrice")]
-        public int DinnerPrice { get; set; }
+        public Int64 DinnerPrice { get; set; }
     }
 }

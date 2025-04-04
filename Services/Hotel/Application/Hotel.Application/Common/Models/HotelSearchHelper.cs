@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hotel.Application.Common.Services.Models
+namespace Hotel.Application.Common.Models
 {
-    public class HotelInfoRequest
+    public class HotelSearchHelper
     {
+        public City City { get; set; }
     }
 }

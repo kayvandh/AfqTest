@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hotel.Domain
+namespace Hotel.Application.Common.Models
 {
-    internal class CityProvider
+    public class ReserveResponse
     {
     }
 }

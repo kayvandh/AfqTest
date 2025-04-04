@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hotel.Application.Common.Services.Models
+namespace Hotel.Application.Common.Models
 {
     public class HotelRoom
     {
+        public Guid RoomId { get; set; }
         public int RoomIndex { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

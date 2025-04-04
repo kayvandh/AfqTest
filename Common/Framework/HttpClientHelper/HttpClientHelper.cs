@@ -63,6 +63,11 @@ namespace Framework.HttpClientHelper
             }
         }
 
+        public Task<TResponse> GetAsync<TResponse>(HttpClient client, string requestUri, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, JsonSerializerOptions options = null)
+        {
+            return GetAsync<TResponse, TResponse>(client, requestUri, parameters, headers, options);
+        }
+
         public async Task<TResponse> PostAsync<TRequest, TResponse, TError>(
                 TRequest request,
                 HttpClient client,
@@ -114,6 +119,11 @@ namespace Framework.HttpClientHelper
             {
                 throw new ApiException(500, ex.Message, "Unhandled exception occurred.");
             }
+        }
+
+        public Task<TResponse> PostAsync<TRequest, TResponse>(TRequest request, HttpClient client, string requestUri, Dictionary<string, string> headers = null, JsonSerializerOptions options = null)
+        {
+            return PostAsync<TRequest, TResponse, TResponse>(request,client,requestUri,headers,options);
         }
     }
 }
