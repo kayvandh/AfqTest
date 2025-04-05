@@ -32,5 +32,9 @@ namespace Hotel.Infrastructure.Services.Eghamat24.Models
 
         [JsonPropertyName("rate_plans")]
         public List<RatePlan> RatePlans { get; set; }
+
+        [JsonIgnore]
+        public double TotalPrice => RatePlans.FirstOrDefault()?.TotalPrice ?? 0;
+
     }
 }

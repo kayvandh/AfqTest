@@ -42,6 +42,50 @@ namespace Hotel.Infrastructure.Services.Eghamat24
                 };
                 
                 var serviceResult = await httpClientHelper.GetAsync<Response<SugesstionResult>>(client, "/v1/suggestion", DictionaryConverter.ToDictionary(serviceRequest), header);
+
+                var result = new HotelSearchResponse()
+                {
+                    HotelResults = serviceResult.Value.Suggestions.Select(p=> new HotelResult() 
+                    { 
+                        ProviderId = ProviderId,
+                        HotelId = Guid.NewGuid(),
+                        CityId = request.CityId,
+                        Title = p.PropertyName,
+                        CityTitle = helper.City.TitleFa,
+                        Address = string.Empty,
+                        Stars = 0,
+                        ChildPolicyAge = 0,
+                        RoomResults = p.Rooms.Select(r=> new HotelRoomPackage()
+                        {
+                            PackageId = Guid.NewGuid(),
+                            CheckInTime = 0,
+                            CheckOutTime = 0,
+                            TotalPrice = r.RatePlans.FirstOrDefault()?.TotalPrice ?? 0,
+                            Rooms = new List<HotelRoom>() 
+                            {
+                                new HotelRoom()
+                                {
+                                    RoomId = Guid.NewGuid(),
+                                    RoomIndex = 1,
+                                    Title = r.RoomTypeName,
+                                    BedType = r.RoomType,
+                                    Board = r.RatePlans.FirstOrDefault()?.BoardType ?? string.Empty,
+                                    Capacity = r.RoomTypeCapacity,
+                                    DailyPrice = r.RatePlans.FirstOrDefault()?.DailyPrice ?? 0,
+                                    TotalPirce = r.RatePlans.FirstOrDefault()?.TotalPrice ?? 0,
+                                    Description = string.Empty,
+                                    Refundable = r.RatePlans.FirstOrDefault().Cancelable == 1,
+                                    SerivceType = string.Empty,                                    
+                                }
+                            },
+                            Properties = System.Text.Json.JsonSerializer.Serialize(new { r.RoomTypeId, r.RoomTypeCapacity, r.RoomTypeExtraCapacity, })
+                        }).ToList(),
+                        MinimumTotalPrice = p.Rooms.Min(r => r.TotalPrice),
+                        CanBook = true,
+                        CanReserve = true,
+                    }).ToList()
+                };
+                return result;
             }
             catch (Exception)
             {

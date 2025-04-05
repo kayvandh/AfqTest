@@ -19,7 +19,7 @@ namespace Hotel.Infrastructure.Services.Moghim24
             try
             {
                 var token = await GetToken();
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);                 
 
                 var serviceRequest = new Moghim24.Models.HotelAvailRequest()
                 {

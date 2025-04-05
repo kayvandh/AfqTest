@@ -58,8 +58,9 @@ namespace Hotel.Infrastructure.Services.Eghamat24.Models
         [JsonPropertyName("prices")]
         public List<Price> Prices { get; set; }
 
-
-
-
+        [JsonIgnore]
+        public double TotalPrice => Prices.Sum(p=>p.DailyRate);
+        [JsonIgnore]
+        public double DailyPrice => Prices.Average(p => p.DailyRate);
     }
 }
