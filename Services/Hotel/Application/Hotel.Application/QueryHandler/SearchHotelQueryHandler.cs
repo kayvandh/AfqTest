@@ -31,11 +31,10 @@ namespace Hotel.Application.QueryHandler
                     City = mapper.Map<Application.Common.Models.City>(await cityRepository.GetById(request.CityId)),
                 };
 
-                foreach (var serviceTracker in tracker.GetServiceTrackers())
+                var services = serviceProvider.GetRequiredKeyedServices<IHotelService>(tracker.GetServiceKeys());
+                foreach (var service in services)
                 {
-                    var service = serviceProvider.GetRequiredKeyedService<IHotelService>(serviceTracker.ServiceKey);
-
-                    tasks.Add(service.HotelSearch(hotelSearchRequest, searchId, serviceTracker.ServiceKey, helper));
+                    tasks.Add(service.HotelSearch(hotelSearchRequest, searchId, helper));
                 }
 
                 var responses = await Task.WhenAll<HotelSearchResponse>(tasks);

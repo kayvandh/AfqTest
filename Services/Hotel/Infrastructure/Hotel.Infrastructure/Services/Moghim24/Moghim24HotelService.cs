@@ -14,7 +14,7 @@ namespace Hotel.Infrastructure.Services.Moghim24
 
         private readonly HttpClient client = httpClientFactory.CreateClient(ServiceInformation.GetServiceInfo(ProviderId).ServiceKey);
 
-        public async Task<HotelSearchResponse> HotelSearch(HotelSearchRequest request, Guid searchId, string serviceKey, HotelSearchHelper helper)
+        public async Task<HotelSearchResponse> HotelSearch(HotelSearchRequest request, Guid searchId, HotelSearchHelper helper)
         {
             try
             {

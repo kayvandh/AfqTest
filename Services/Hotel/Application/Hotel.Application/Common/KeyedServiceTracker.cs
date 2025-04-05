@@ -11,6 +11,7 @@ namespace Hotel.Application.Common
                 _serviceTracker.Add(new ServiceTracker(providerId, serviceKey));
         }
         public IReadOnlyList<ServiceTracker> GetServiceTrackers() => _serviceTracker.AsReadOnly();
+        public IReadOnlyList<string> GetServiceKeys() => _serviceTracker.Select(p => p.ServiceKey).ToList().AsReadOnly();
         public ServiceTracker? GetService(int providerId) => _serviceTracker.FirstOrDefault(p => p.ProviderId == providerId);
     }
     public class ServiceTracker
