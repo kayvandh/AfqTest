@@ -91,8 +91,6 @@ namespace Hotel.Infrastructure.Services.Eghamat24
             {
                 throw;
             }
-
-            return null;
         }
 
         public Task<HotelInfoResponse> HotelInfo(HotelInfoRequest request)
