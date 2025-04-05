@@ -18,8 +18,7 @@ namespace Hotel.ApiService.Controller
         [ProducesResponseType(typeof(ApiResponse<List<City>>), (int)HttpStatusCode.BadRequest)]
         public async Task<ApiResponse<List<City>>> GetAllCities()
         {
-            var request = new GetAllCityQuery();
-            var result = await mediator.Send(request);
+            var result = await mediator.Send(new GetAllCityQuery());
             return result.ToApiResponse();
         }
 
