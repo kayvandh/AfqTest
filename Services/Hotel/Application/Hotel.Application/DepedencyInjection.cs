@@ -17,7 +17,7 @@ namespace Hotel.Application
             services.Configure<AppSettings.Main>(
                 configuration.GetSection(AppSettings.Main.Section));
 
-            services.AddValidatorsFromAssemblyContaining<HotelSearchCommandValidator>();
+            services.AddValidatorsFromAssemblyContaining<SearchHotelQueryValidator>();
             services.AddFluentValidationAutoValidation();
             return services;
         }

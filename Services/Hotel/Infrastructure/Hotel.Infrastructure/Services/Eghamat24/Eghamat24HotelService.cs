@@ -40,8 +40,9 @@ namespace Hotel.Infrastructure.Services.Eghamat24
                     CheckOutDate = request.CheckOutDate,
                     CityId = Convert.ToInt32(helper.City.ProviderCities.FirstOrDefault(p => p.ProviderId == ProviderId).Code),
                 };
-                
-                var serviceResult = await httpClientHelper.GetAsync<Response<SugesstionResult>>(client, "/v1/suggestion", DictionaryConverter.ToDictionary(serviceRequest), header);
+
+                var parameters = DictionaryConverter.ToDictionary(serviceRequest);
+                var serviceResult = await httpClientHelper.GetAsync<Response<SugesstionResult>>(client, "/v1/suggestion", parameters, header);
 
                 var result = new HotelSearchResponse()
                 {

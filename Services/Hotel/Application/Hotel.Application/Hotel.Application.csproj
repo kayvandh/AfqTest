@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="CommandHandler\" />
+    <Folder Include="Command\" />
   </ItemGroup>
 
 </Project>

@@ -22,25 +22,25 @@ namespace Hotel.Infrastructure.Services.Eghamat24.Models
         public int DailyRate { get; set; }
 
         [JsonPropertyName("grs_rate")]
-        public int GrsRate { get; set; }
+        public int? GrsRate { get; set; }
 
         [JsonPropertyName("baby_cot_rack_rate")]
-        public int BabyCotRackRate { get; set; }
+        public int? BabyCotRackRate { get; set; }
 
         [JsonPropertyName("baby_cot_daily_rate")]
-        public int BabyCotDailyRate { get; set; }
+        public int? BabyCotDailyRate { get; set; }
 
         [JsonPropertyName("baby_cot_grs_rate")]
-        public int BabyCotGrsRate { get; set; }
+        public int? BabyCotGrsRate { get; set; }
 
         [JsonPropertyName("extend_bed_rack_rate")]
-        public int ExtendBedRackRate { get; set; }
+        public int?  ExtendBedRackRate { get; set; }
 
         [JsonPropertyName("extend_bed_daily_rate")]
-        public int ExtendBedDailyRate { get; set; }
+        public int? ExtendBedDailyRate { get; set; }
 
         [JsonPropertyName("extend_bed_grs_rate")]
-        public int ExtendBedGrsRate { get; set; }
+        public int? ExtendBedGrsRate { get; set; }
 
         [JsonPropertyName("reservation_state")]
         public string ReservationState { get; set; }

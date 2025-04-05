@@ -38,7 +38,7 @@ namespace Hotel.Infrastructure.Services.Eghamat24.Models
         public string FoodBoardType { get; set; }
 
         [JsonPropertyName("breakfast_rate")]
-        public int BreakfastRate { get; set; }
+        public int? BreakfastRate { get; set; }
 
         [JsonPropertyName("half_board_rate")]
         public int? HalfBoardRate { get; set; }
